@@ -9,14 +9,13 @@
   (:import
     (twitter.callbacks.protocols SyncSingleCallback)))
 
-(def creds
-  (->> "twitter.edn"
-    io/resource
-    slurp
-    edn/read-string))
-
-(def my-creds
-  (make-oauth-creds (:app-consumer-key creds)
-                    (:app-consumer-secret creds)
-                    (:user-access-token creds)
-                    (:user-access-token-secret creds)))
+(defn load-twitter-config
+  "Load and return your Twitter configuration.
+   Copy twitter.edn.template to twitter.edn and edit."
+  ([] (load-twitter-config "resources/twitter.edn"))
+  ([filename]
+  (try
+    (edn/read-string (slurp filename))
+    (catch java.io.FileNotFoundException e
+      (throw (java.io.FileNotFoundException.
+              (str (.getMessage e) " Copy twitter.edn.template to twitter.edn and edit.")))))))
