@@ -9,6 +9,7 @@ pom.xml.asc
 .lein-repl-history
 .lein-plugins/
 .lein-failures
+.nrepl-port
 twitter.edn
 github.edn
 
