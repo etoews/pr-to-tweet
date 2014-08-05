@@ -1,13 +1,6 @@
 (ns tweet.core
   (:require
-    [clojure.edn :as edn]
-    [clojure.java.io :as io]
-    [twitter.oauth :refer :all]
-    [twitter.callbacks :refer :all]
-    [twitter.callbacks.handlers :refer :all]
-    [twitter.api.restful :refer :all])
-  (:import
-    (twitter.callbacks.protocols SyncSingleCallback)))
+    [clojure.edn :as edn]))
 
 (defn load-twitter-config
   "Load and return your Twitter configuration.
