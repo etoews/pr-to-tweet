@@ -10,11 +10,23 @@
     [twitter.api.restful :refer :all]
     [tweet.core :refer :all]))
 
-;(friendships-show :oauth-creds my-creds
-;                  :params {:target-screen-name "everett_toews"})
+(def twitter-config (load-twitter-config "resources/twitter.edn"))
 
-;(users-show :oauth-creds my-creds :params {:screen-name "everett_toews"})
+(clojure.pprint/pprint twitter-config)
 
-;(statuses-update :oauth-creds my-creds :params {:status "Tweeting with #clojure from inside Light Table. Neat."})
+(def twitter-creds
+  (make-oauth-creds (:app-consumer-key twitter-config)
+                    (:app-consumer-secret twitter-config)
+                    (:user-access-token twitter-config)
+                    (:user-access-token-secret twitter-config)))
 
-(statuses-home-timeline :oauth-creds my-creds :params {:count 3})
+;;(friendships-show :oauth-creds my-creds
+;;                  :params {:target-screen-name "everett_toews"})
+
+;;(users-show :oauth-creds twitter-creds :params {:screen-name "everett_toews"})
+
+;;(statuses-update :oauth-creds my-creds :params {:status "Tweeting with #clojure from inside Light Table. Neat."})
+
+(def tweets (statuses-home-timeline :oauth-creds twitter-creds :params {:count 3}))
+
+(clojure.pprint/pprint tweets)
