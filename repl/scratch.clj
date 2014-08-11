@@ -1,18 +1,13 @@
 (ns scratch
+  (:use [clojure.pprint :only (pprint)])
   (:require
-    [clojure.edn :as edn]
-    [clojure.repl :refer :all]
-    [clojure.test :refer :all]
-    [clojure.java.io :as io]
     [twitter.oauth :refer :all]
-    [twitter.callbacks :refer :all]
-    [twitter.callbacks.handlers :refer :all]
     [twitter.api.restful :refer :all]
     [tweet.core :refer :all]))
 
 (def twitter-config (load-twitter-config "resources/twitter.edn"))
 
-(clojure.pprint/pprint twitter-config)
+(pprint twitter-config)
 
 (def twitter-creds
   (make-oauth-creds (:app-consumer-key twitter-config)
@@ -29,4 +24,6 @@
 
 (def tweets (statuses-home-timeline :oauth-creds twitter-creds :params {:count 3}))
 
-(clojure.pprint/pprint tweets)
+(pprint tweets)
+
+()
