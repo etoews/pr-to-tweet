@@ -9,15 +9,15 @@
 
 ;; Twitter
 
-(def twitter-config (load-twitter-config))
+;(def twitter-config (load-twitter-config))
 
-(pprint twitter-config)
+;(pprint twitter-config)
 
-(def twitter-creds
-  (make-oauth-creds (:app-consumer-key twitter-config)
-                    (:app-consumer-secret twitter-config)
-                    (:user-access-token twitter-config)
-                    (:user-access-token-secret twitter-config)))
+;(def twitter-creds
+;  (make-oauth-creds (:app-consumer-key twitter-config)
+;                    (:app-consumer-secret twitter-config)
+;                    (:user-access-token twitter-config)
+;                    (:user-access-token-secret twitter-config)))
 
 ;;(friendships-show :oauth-creds twitter-creds
 ;;                  :params {:target-screen-name (:screen-name twitter-config)})
@@ -26,11 +26,11 @@
 
 ;;(statuses-update :oauth-creds twitter-creds :params {:status "Tweeting with #clojure from inside Light Table. Neat."})
 
-(def tweets (statuses-home-timeline :oauth-creds twitter-creds :params {:count 3}))
-
-(pprint tweets)
-
-(pprint (map :text (:body tweets)))
+;(def tweets (statuses-home-timeline :oauth-creds twitter-creds :params {:count 3}))
+;
+;(pprint tweets)
+;
+;(pprint (map :text (:body tweets)))
 
 ;; GitHub
 
@@ -38,6 +38,7 @@
 
 (def github-creds (str (:username github-config) ":" (:password github-config)))
 
-(repos/repos {:auth github-creds})
+(def repos (repos/repos {:oauth-token (:oauth-token github-config)}))
 
 (pprint (map :name repos))
+
