@@ -1,5 +1,6 @@
 (ns tweet.core-test
-  (:require [clojure.test :refer :all])
+  (:require [clojure.test :refer :all]
+            [tweet.core :refer :all]))
 
 (deftest test-load-twitter-config-default
   (is (thrown? java.io.FileNotFoundException (load-twitter-config))))
