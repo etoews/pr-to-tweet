@@ -18,9 +18,12 @@
 
 (map #(+ %1 7) [2 3])
 
+;; Macro
+
 (defmacro when
   "Evaluates test. If true, evaluates body."
   [test & body]
   (list 'if test (cons 'do body)))
 
 (when true (+ 2 3))
+
